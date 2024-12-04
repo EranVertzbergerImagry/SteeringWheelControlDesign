@@ -15,35 +15,11 @@ def initialize_environment():
     pre_required_install_check()
     print('finished')
 
-def install_tkinter():
-    try:
-        # Attempt to install tkinter via the system package manager
-        if sys.platform.startswith('linux'):
-            # On Ubuntu/Debian-based systems
-            subprocess.check_call(['sudo', 'apt-get', 'install', '-y', 'python3-tk'])
-        elif sys.platform == 'darwin':  # macOS
-            subprocess.check_call(['brew', 'install', 'python-tk'])
-        elif sys.platform == 'win32':
-            print("Please install tkinter manually via the Python installer.")
-            sys.exit(1)
-        else:
-            print("Unsupported OS. Please install tkinter manually.")
-            sys.exit(1)
-    except subprocess.CalledProcessError as e:
-        print(f"Failed to install tkinter: {e}")
-        sys.exit(1)
-
-try:
-    import tkinter as tk
-except ImportError:
-    print("tkinter is not installed. Installing...")
-    install_tkinter()
-
 def pre_required_install_check():
     """
     Checks if the required packages are installed and installs them if not.
     """
-    packages = ['pandas', 'matplotlib', 'numpy', 'scipy', 'folium', 'multipledispatch', 'debugpy']
+    packages = ['pandas', 'matplotlib', 'numpy', 'scipy', 'control']
 
     for package_name in packages:
         try:
